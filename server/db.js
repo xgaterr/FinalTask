@@ -7,6 +7,17 @@ db.serialize(() => {
     username TEXT UNIQUE,
     password TEXT
   )`);
+
+  db.run(`CREATE TABLE IF NOT EXISTS violations (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
+    description TEXT,
+    datetime TEXT,
+    latitude REAL,
+    longitude REAL,
+    photo TEXT,
+    FOREIGN KEY(user_id) REFERENCES users(id)
+  )`);
 });
 
 module.exports = db;
